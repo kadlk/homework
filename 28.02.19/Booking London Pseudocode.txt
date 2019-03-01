@@ -1,0 +1,53 @@
+This programm helps us to book a room in London.
+
+BEGIN
+
+if (PC turned on == true)
+	{ Open browser }
+else
+	{ Turn on PC }
+
+if ( booking.com is on bookmarks == true )
+	{ Open bookmark }
+else
+	{ Enter URL "booking.com" }
+
+if (account exist == true) 
+	{ 
+		if (you autologed on booking.com == true)
+			{ Enter London, date of living and number of persons }
+
+else 
+	{ 
+		Create new account 
+	if (you have email == true)
+	{ 
+		Register account on your mail 
+	}
+	
+	else
+	{ 
+		Create email 
+		Register account on your mail
+		Enter email and password and login
+		Enter London, date of living and number of persons}
+}
+}
+
+METHOD choosingRoomCriteries
+	{
+		Mark down items about taxi, your job and renting a car
+		Press button "Check the price"
+		Enter your criterion of searching room
+		Choose the most suitable and open items
+
+while (is room match to you == true )
+
+	{
+		choosingRoomCriteries();
+	}
+	
+Enter your desire to room
+Accept your book
+Appartment booked
+END
