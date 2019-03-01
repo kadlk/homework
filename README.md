@@ -1,2 +1,10 @@
-h1 Vadim Kontush homework
-(https://image.flaticon.com/icons/svg/1076/1076877.svg)
+
+# Homework folder
+
+
+| ![screenshot of sample](https://i.ibb.co/RY4HN6Z/pawprint.png) | ![screenshot of sample](https://i.ibb.co/RY4HN6Z/pawprint.png) |
+| ------ | ------ |
+| Full name | **Vadim Kontush** |
+| Group | **C-F19** |
+| Mail | vadimkontush@gmail.com |
+
