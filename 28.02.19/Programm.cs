@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HW_Kontush_2_lesson
 {
-    class HW_1
+    class Programm
     {
         static void Main(string[] args)
         {
