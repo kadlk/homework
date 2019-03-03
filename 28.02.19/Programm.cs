@@ -127,6 +127,8 @@ namespace HW_Kontush_2_lesson
             Console.WriteLine();
 
             Console.ReadKey();
+            
+            // git from visual studio test
         }
     }
 }
