@@ -5,3 +5,10 @@ C:\Users\kadlk\source\repos\HW_Kontush_2 lesson\HW_Kontush_2 lesson\obj\Debug\HW
 C:\Users\kadlk\source\repos\HW_Kontush_2 lesson\HW_Kontush_2 lesson\obj\Debug\HW_Kontush_2 lesson.csproj.CoreCompileInputs.cache
 C:\Users\kadlk\source\repos\HW_Kontush_2 lesson\HW_Kontush_2 lesson\obj\Debug\HW_Kontush_2 lesson.exe
 C:\Users\kadlk\source\repos\HW_Kontush_2 lesson\HW_Kontush_2 lesson\obj\Debug\HW_Kontush_2 lesson.pdb
+E:\IT Courses\Homework\28.02.19\bin\Debug\HW_Kontush_2 lesson.exe.config
+E:\IT Courses\Homework\28.02.19\bin\Debug\HW_Kontush_2 lesson.exe
+E:\IT Courses\Homework\28.02.19\bin\Debug\HW_Kontush_2 lesson.pdb
+E:\IT Courses\Homework\28.02.19\obj\Debug\HW_Kontush_2 lesson.csprojAssemblyReference.cache
+E:\IT Courses\Homework\28.02.19\obj\Debug\HW_Kontush_2 lesson.csproj.CoreCompileInputs.cache
+E:\IT Courses\Homework\28.02.19\obj\Debug\HW_Kontush_2 lesson.exe
+E:\IT Courses\Homework\28.02.19\obj\Debug\HW_Kontush_2 lesson.pdb
