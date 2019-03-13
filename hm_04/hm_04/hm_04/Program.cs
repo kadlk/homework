@@ -10,6 +10,13 @@ namespace hm_04
     {
         static void Main(string[] args)
         {
+            for (int i = 90; i >= 65; i--)
+            {
+                char letter = (char)i;
+                Console.WriteLine(letter);
+            }
+            
+            Console.Read();
         }
     }
 }
