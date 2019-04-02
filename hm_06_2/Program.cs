@@ -29,7 +29,7 @@ namespace hm_06_2
 
                 for (int i = 0; i < symbolsArray.Length; i++)
                 {
-                    for (int j = 0; j < symbolsArray.Length - 1; j++)
+                    for (int j = 0; j < symbolsArray.Length - 1 - i; j++)
                     {
                         if (symbolsArray[j].Length < symbolsArray[j + 1].Length)
                         {
