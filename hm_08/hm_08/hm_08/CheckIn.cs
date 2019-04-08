@@ -111,7 +111,7 @@ namespace hm_08
             string time = DateTime.Now.ToString("HH:mm");
 
             Console.WriteLine("\nYou are on the reseption stand.");
-            Console.WriteLine("\nWhat is your name?");
+            Console.WriteLine("What is your name?");
             name = Console.ReadLine();
 
             Console.WriteLine($"\nHello {name}, it is {time} o`clock. \nWe are glad to see you at our airport. \nGive me your passport.");

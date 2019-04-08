@@ -31,6 +31,7 @@ namespace hm_08
             Console.BackgroundColor = ConsoleColor.Black;
 
             bool isDrugControlPassed = false;
+            bool isLuckyBoy = false;
             if (luggage.haveLuggage == false)
             {
                 Console.WriteLine("\nOh, lucky. You have no luggage with you. Lets make a fast inspection of you. \nIts Okay. Go next. ");
@@ -46,16 +47,23 @@ namespace hm_08
                     security.FluidCheck(luggage);
                     security.MoneyCheck(luggage);
                     isDrugControlPassed = true;
+
+                    if (security.LuckyBoy)
+                    {
+                        isLuckyBoy = true;
+                    }
                 }
             }
 
-            Console.BackgroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("\nNow you are on passport check stand.");
-            Console.BackgroundColor = ConsoleColor.Black;
+            
 
             PassportControl passportControl = new PassportControl();
             if (isDrugControlPassed)
             {
+                Console.BackgroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("\nNow you are on passport check stand.");
+                Console.BackgroundColor = ConsoleColor.Black;
+
                 passportControl.CheckName(checkIn);
                 if (passportControl.IsCorrectName)
                 {
@@ -63,7 +71,7 @@ namespace hm_08
                 }
             }
             
-            Console.WriteLine("Lets make a little summary:");
+            Console.WriteLine("\nLets make a little summary:");
             Console.WriteLine($"Our airpot is {CheckIn.airportName} in {CheckIn.city}.  \nYour name: {checkIn.name}");
             Console.WriteLine($"Online registration: {checkIn.isOnlineReg}");
             Console.WriteLine($"Seat number: {checkIn.seatNumber}");
@@ -98,18 +106,28 @@ namespace hm_08
 
                 if (luggage.haveDrugs)
                 {
-                    Console.WriteLine("You had drugs. It was your mistake");
+                    Console.WriteLine("You had drugs.");
                 }
                 else
                 {
                     Console.WriteLine("No drugs with you");
                 }
             }
+            else
+            {
+                Console.WriteLine("You have no luggage.");
+            }
 
             if (passportControl.HaveVisa)
             {
                 Console.BackgroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine("Congrats! You passed this quest.");
+
+                if (isLuckyBoy)
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("And you passed this quest with DRUGS!!!!!");
+                }
             }
             else
             {
