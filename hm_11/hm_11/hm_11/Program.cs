@@ -1,14 +1,20 @@
 ﻿using System;
+using log4net;
+
 
 namespace hm_11
 {
     class Program
     {
+        static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main(string[] args)
         {
+            log.Info("Create controller object");
             Controller controller = new Controller();
             Motorcycle honda = new Motorcycle();
             FillMotoParams(honda);
+            log.Info("Adding object to array");
             controller.CreateMotorcycle(honda);
 
             Motorcycle suzuki = new Motorcycle();
@@ -37,6 +43,8 @@ namespace hm_11
 
         public static void FillMotoParams(Motorcycle motorcycle)
         {
+            log.Info("Start filling params");
+
             Console.WriteLine("Lets create new moto. \nInput ID: ");
             motorcycle.Id = Console.ReadLine();
             Console.WriteLine("Input name: ");
@@ -66,6 +74,7 @@ namespace hm_11
 
     public class Motorcycle
     {
+        
         public static Motorcycle[] motoArr = new Motorcycle[10];
         public static int UsableElements { get; set; } = 0;
         public string Id { get; set; }
@@ -86,14 +95,19 @@ namespace hm_11
 
     class Controller : IControl
     {
+        static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public void CreateMotorcycle(Motorcycle motorcycle)
         {
+            log.Info("Create motorcycle object");
+
             Motorcycle.motoArr[Motorcycle.UsableElements] = motorcycle;
             Motorcycle.UsableElements++;
         }
 
-        public void DeleteMotorcycle(string id) // Delete moto with shifting left all array
+        public void DeleteMotorcycle(string id)
         {
+
             for (int i = 0; i < Motorcycle.UsableElements; i++)
             {
                 if (id.Equals(Motorcycle.motoArr[i].Id))
@@ -105,6 +119,8 @@ namespace hm_11
                     Motorcycle.UsableElements--;
                 }
             }
+            log.Info($"Deleted {id} moto with shifting left all array. Last usable element in array is {Motorcycle.UsableElements}");
+
         }
 
         public Motorcycle GetMotorcycleByID(string id)
@@ -133,6 +149,8 @@ namespace hm_11
                     Motorcycle.motoArr[i] = motorcycle;
                 }
             }
+            log.Info($"Updated {id} moto");
         }
     }
 }
+
