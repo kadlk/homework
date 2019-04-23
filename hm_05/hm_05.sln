@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hm_05_01", "hm_05_01\hm_05_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hm_05_03", "hm_05_03\hm_05_03.csproj", "{23AE7040-2CDE-43F0-AE43-7ACFD7F53298}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "reverse_try", "reverse_try\reverse_try.csproj", "{7B3BF6EA-3D0F-4562-A408-553ED5B07F3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{23AE7040-2CDE-43F0-AE43-7ACFD7F53298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23AE7040-2CDE-43F0-AE43-7ACFD7F53298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23AE7040-2CDE-43F0-AE43-7ACFD7F53298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3BF6EA-3D0F-4562-A408-553ED5B07F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3BF6EA-3D0F-4562-A408-553ED5B07F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3BF6EA-3D0F-4562-A408-553ED5B07F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3BF6EA-3D0F-4562-A408-553ED5B07F3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
