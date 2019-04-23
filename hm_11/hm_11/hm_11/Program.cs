@@ -74,7 +74,6 @@ namespace hm_11
 
     public class Motorcycle
     {
-        
         public static Motorcycle[] motoArr = new Motorcycle[10];
         public static int UsableElements { get; set; } = 0;
         public string Id { get; set; }
@@ -96,7 +95,6 @@ namespace hm_11
     class Controller : IControl
     {
         static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         public void CreateMotorcycle(Motorcycle motorcycle)
         {
             log.Info("Create motorcycle object");
@@ -104,7 +102,6 @@ namespace hm_11
             Motorcycle.motoArr[Motorcycle.UsableElements] = motorcycle;
             Motorcycle.UsableElements++;
         }
-
         public void DeleteMotorcycle(string id)
         {
 
@@ -122,7 +119,6 @@ namespace hm_11
             log.Info($"Deleted {id} moto with shifting left all array. Last usable element in array is {Motorcycle.UsableElements}");
 
         }
-
         public Motorcycle GetMotorcycleByID(string id)
         {
             for (int i = 0; i < Motorcycle.UsableElements; i++)
@@ -134,12 +130,10 @@ namespace hm_11
             }
             return null;
         }
-
         public Motorcycle[] GetMotorcycles()
         {
             return Motorcycle.motoArr;
         }
-
         public void UpdateMotorcycle(string id, Motorcycle motorcycle)
         {
             for (int i = 0; i < Motorcycle.UsableElements; i++)

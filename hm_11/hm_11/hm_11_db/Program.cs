@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
+using log4net;
 
 
 namespace hm_11_db
 {
-    class Program
+    public class Program
     {
+        public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main(string[] args)
         {
             //string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=motodb;Integrated Security=True;Connection Timeout=60";
@@ -18,23 +21,27 @@ namespace hm_11_db
             // If we added credits to app.config
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-
             //string sqlExpression = "INSERT INTO Motos (Name, Model, year ) VALUES ('Honda', 'x600', 2019)";
             //string sqlExpression = "UPDATE Motos SET Model='x600-1' WHERE Name='Honda'";
 
             Db db = new Db();
             //db.CreateMoto("Vadz", "x300", 1989, 23000);
             //db.CreateMoto("Vadz", "x300", 1989, 23000);
-            //db.CreateMoto("Vadz", "x300", 1989, 23000);
+            log.Info($"sdsad");
+
+            db.CreateMotorcycle("Vadz", "x300", 1989, 23000);
             //db.CreateMotorcycle("Vadz", "x300", 1989, 23000);
             //db.CreateMotorcycle();
             //db.EraseDb();
             //Motorcycle.motoArr = db.GetMotorcycles();
-           
-            Motorcycle honda = new Motorcycle();
-            db.GetMotorcycleByID(1, honda);
-            db.UpdateMotorcycle(2, "wwww");
-            Console.WriteLine(honda.Odometer);
+            //Motorcycle mot = new Motorcycle();
+            //db.GetMotorcycleByID(2, mot);
+            //Console.WriteLine(mot.Model);
+            //Motorcycle honda = new Motorcycle();
+            //db.GetMotorcycleByID(1, honda);
+            //db.UpdateMotorcycle(2, "wwww");
+            //db.DeleteMotorcycle(1);
+            //Console.WriteLine(honda.Odometer);
 
             Console.Read();
         }
@@ -43,14 +50,16 @@ namespace hm_11_db
     public interface IControl
     {
         Motorcycle GetMotorcycleByID(int idValue, Motorcycle motorcycle);
-        //Motorcycle[] GetMotorcycles();
         void CreateMotorcycle();
         void UpdateMotorcycle(int id, string name);
-        //void DeleteMotorcycle(string id);
+        void DeleteMotorcycle(int id);
+        //Motorcycle[] GetMotorcycles();
     }
 
     class Db : IControl
     {
+        public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public void CreateMotorcycle()
         {
             string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=motodb;Integrated Security=True";
@@ -63,6 +72,7 @@ namespace hm_11_db
                 int number = command.ExecuteNonQuery();
                 Console.WriteLine("Добавлено объектов: {0}", number);
             }
+            log.Info($"Created new moto with no params");
         }
         public void CreateMotorcycle(string name, string model, int year, int odometr)
         {
@@ -76,36 +86,8 @@ namespace hm_11_db
                 int number = command.ExecuteNonQuery();
                 Console.WriteLine("Добавлено объектов: {0}", number);
             }
-        }
-        public void ShowDb(string dbName)
-        {
-            string connectionString = $@"Data Source=.\SQLEXPRESS;Initial Catalog={dbName};Integrated Security=True";
-            string sqlExpression = "SELECT * FROM Motos";
+            log.Info($"Created new moto: {name}, {model}, {year}, {odometr}");
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection);
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}", reader.GetName(0), reader.GetName(1), reader.GetName(2), reader.GetName(3), reader.GetName(4));
-
-                    while (reader.Read())
-                    {
-                        object id = reader.GetValue(0);
-                        object name = reader.GetValue(1);
-                        object model = reader.GetValue(2);
-                        object year = reader.GetValue(3);
-                        object odometr = reader.GetValue(4);
-
-                        Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}", id, name, model, year, odometr);
-                    }
-                }
-
-                reader.Close();
-            }
         }
         public Motorcycle GetMotorcycleByID(int idValue, Motorcycle motorcycle)
         {
@@ -134,20 +116,6 @@ namespace hm_11_db
 
             }
         }
-        public void EraseDb()
-        {
-            string connectionString = $@"Data Source=.\SQLEXPRESS;Initial Catalog=motodb;Integrated Security=True";
-            string sqlExpression = $"DELETE FROM Motos;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Close();
-            }
-        }
-
         public void UpdateMotorcycle(int id, string name)
         {
             string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=motodb;Integrated Security=True";
@@ -160,6 +128,33 @@ namespace hm_11_db
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 int number = command.ExecuteNonQuery();
                 Console.WriteLine("Добавлено объектов: {0}", number);
+            }
+        }
+        public void UpdateMotorcycle(int id, string name, string model, int year, int odometr)
+        {
+            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=motodb;Integrated Security=True";
+            string sqlExpression = $"UPDATE Motos SET Name='{name}', Model='{model}', Year='{year}', Odometr='{odometr}' WHERE Id={id}";
+            //$" ( Model={model} Year={year} Odometr={odometr} )";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                int number = command.ExecuteNonQuery();
+                Console.WriteLine("Добавлено объектов: {0}", number);
+            }
+        }
+        public void DeleteMotorcycle(int id)
+        {
+            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=motodb;Integrated Security=True";
+            string sqlExpression = $"DELETE FROM Motos WHERE Id={id}";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                int number = command.ExecuteNonQuery();
+                Console.WriteLine("Deleted: {0}", number);
             }
         }
         //public Motorcycle[] GetMotorcycles()
@@ -192,10 +187,52 @@ namespace hm_11_db
         //        return Motorcycle.motoArr;
         //    }
         //}
+        public void ShowDb(string dbName)
+        {
+            string connectionString = $@"Data Source=.\SQLEXPRESS;Initial Catalog={dbName};Integrated Security=True";
+            string sqlExpression = "SELECT * FROM Motos";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}", reader.GetName(0), reader.GetName(1), reader.GetName(2), reader.GetName(3), reader.GetName(4));
+
+                    while (reader.Read())
+                    {
+                        object id = reader.GetValue(0);
+                        object name = reader.GetValue(1);
+                        object model = reader.GetValue(2);
+                        object year = reader.GetValue(3);
+                        object odometr = reader.GetValue(4);
+
+                        Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}", id, name, model, year, odometr);
+                    }
+                }
+
+                reader.Close();
+            }
+        }
+        public void EraseDb()
+        {
+            string connectionString = $@"Data Source=.\SQLEXPRESS;Initial Catalog=motodb;Integrated Security=True";
+            string sqlExpression = $"DELETE FROM Motos;";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Close();
+            }
+        }
     }
         public class Motorcycle
         {
-
             public static Motorcycle[] motoArr = new Motorcycle[1000];
             public int Id { get; set; }
             public string Name { get; set; }
