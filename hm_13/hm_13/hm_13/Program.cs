@@ -10,11 +10,18 @@ namespace hm_13
     {
         static void Main(string[] args)
         {
-            Stack<string> stack = new Stack<string>();
-            string name = "Vadim";
-            stack.Push(name);
-            string myName = stack.Pop();
-            Console.WriteLine(myName);
+            StackT<int> stack = new StackT<int>();
+            int number = 3;
+            stack.Push(number);
+            int numberTemp = stack.Pop();
+            Console.WriteLine(numberTemp);
+
+            Stack stackStr = new Stack();
+            string name = "string Vadim";
+            stackStr.Push(name);
+            Console.WriteLine(name);
+
+            Console.ReadLine();
         }
     }
 }

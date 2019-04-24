@@ -6,34 +6,33 @@ using System.Threading.Tasks;
 
 namespace hm_13
 {
-    public class Stack
+    public class StackT<T>
     {
-        private string[] _items;
+        private T[] _items;
         private int _count;
 
-        public Stack()
+        public StackT()
         {
-            _items = new string[10];
+            _items = new T[10];
         }
 
-        public void Push(string item)
+        public void Push(T item)
         {
             if (_count == 10)
                 throw new StackMessageException("Stack has no free space");
             _items[_count++] = item;
         }
-        public string Pop()
+        public T Pop()
         {
             if (_count == 0)
                 throw new StackMessageException("Stack is empty");
-            string item = _items[--_count];
+            T item = _items[--_count];
             return item;
         }
 
-        public string Peek()
+        public T Peek()
         {
             return _items[_count - 1];
         }
     }
 }
-
