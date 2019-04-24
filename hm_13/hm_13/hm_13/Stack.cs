@@ -9,7 +9,7 @@ namespace hm_13
     public class Stack
     {
         private string[] _items;
-        private int _count;
+        public int count;
 
         public Stack()
         {
@@ -18,21 +18,21 @@ namespace hm_13
 
         public void Push(string item)
         {
-            if (_count == 10)
+            if (count == 10)
                 throw new StackMessageException("Stack has no free space");
-            _items[_count++] = item;
+            _items[count++] = item;
         }
         public string Pop()
         {
-            if (_count == 0)
+            if (count == 0)
                 throw new StackMessageException("Stack is empty");
-            string item = _items[--_count];
+            string item = _items[--count];
             return item;
         }
 
         public string Peek()
         {
-            return _items[_count - 1];
+            return _items[count - 1];
         }
     }
 }

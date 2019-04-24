@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using hm_13.Extensions;
 
 namespace hm_13
 {
@@ -10,18 +11,21 @@ namespace hm_13
     {
         static void Main(string[] args)
         {
-            StackT<int> stack = new StackT<int>();
+            StackT<int> stackT = new StackT<int>();
             int number = 3;
-            stack.Push(number);
-            int numberTemp = stack.Pop();
-            Console.WriteLine(numberTemp);
+            stackT.Push(number);
+            stackT.Push(number);
+            int numberTemp = stackT.Pop();
 
             Stack stackStr = new Stack();
             string name = "string Vadim";
             stackStr.Push(name);
-            Console.WriteLine(name);
+            stackStr.Push(name);
+            stackStr.Push(name);
 
-            Console.ReadLine();
+            stackStr.FreeElementsLeft();
+            stackT.FreeElementsLeft();
+            Console.Read();
         }
     }
 }

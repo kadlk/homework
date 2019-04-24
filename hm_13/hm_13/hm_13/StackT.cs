@@ -9,7 +9,7 @@ namespace hm_13
     public class StackT<T>
     {
         private T[] _items;
-        private int _count;
+        public int count;
 
         public StackT()
         {
@@ -18,21 +18,21 @@ namespace hm_13
 
         public void Push(T item)
         {
-            if (_count == 10)
+            if (count == 10)
                 throw new StackMessageException("Stack has no free space");
-            _items[_count++] = item;
+            _items[count++] = item;
         }
         public T Pop()
         {
-            if (_count == 0)
+            if (count == 0)
                 throw new StackMessageException("Stack is empty");
-            T item = _items[--_count];
+            T item = _items[--count];
             return item;
         }
 
         public T Peek()
         {
-            return _items[_count - 1];
+            return _items[count - 1];
         }
     }
 }
